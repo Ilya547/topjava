@@ -6,8 +6,9 @@ import ru.javawebinar.topjava.model.UserMealWithExcess;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+
+import static ru.javawebinar.topjava.util.TimeUtil.isBetweenHalfOpen;
 
 public class UserMealsUtil {
     public static void main(String[] args) {
@@ -28,8 +29,35 @@ public class UserMealsUtil {
     }
 
     public static List<UserMealWithExcess> filteredByCycles(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
-        // TODO return filtered list with excess. Implement by cycles
-        return null;
+        meals.sort((Comparator.comparingInt(o -> o.getDateTime().getDayOfMonth())));
+
+        Map<Integer, Object> map = new TreeMap<>();
+        int day = 0;
+        int calories = 0;
+        boolean excess = false;
+        for (UserMeal meal : meals) {
+            if (day != meal.getDateTime().getDayOfMonth()) {
+                day = meal.getDateTime().getDayOfMonth();
+                calories = 0;
+            }
+            calories += meal.getCalories();
+            excess = calories > caloriesPerDay;
+            map.put(day, excess);
+        }
+
+        for (UserMeal meal : meals) {
+            if (isBetweenHalfOpen(meal.getDateTime().toLocalTime(), startTime, endTime)) {
+                map.merge(meal.getDateTime().getDayOfMonth(), excess, (a, b) ->
+                        new UserMealWithExcess(meal.getDateTime(), meal.getDescription(), meal.getCalories(), (Boolean) b));
+            }
+        }
+
+        List<Object> objects = new ArrayList<>(map.values());
+        List<UserMealWithExcess> filteredUserMealsWE = new ArrayList<>(objects.size());
+        for (Object object : objects) {
+            filteredUserMealsWE.add((UserMealWithExcess) object);
+        }
+        return filteredUserMealsWE;
     }
 
     public static List<UserMealWithExcess> filteredByStreams(List<UserMeal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay) {
