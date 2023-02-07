@@ -7,15 +7,15 @@
 - [Набор ссылок для тренировки и прохождения интервью](https://github.com/andreis/interview)
 
 ### Составление резюме:
--  [VisualCV: create resume in minutes](https://www.visualcv.com/)
+-  [VisualCV: create Meal in minutes](https://www.visualcv.com/)
 -  <a href="http://resumup.com/">Выбрать шаблон для резюме</a>
--  [GitHub Pages](https://pages.github.com/), <a href="https://github.com/jglovier/resume-template">Resume template</a>
+-  [GitHub Pages](https://pages.github.com/), <a href="https://github.com/jglovier/Meal-template">Meal template</a>
 -  <a href="http://lifehacker.ru/2015/04/07/33-lajfhaka-dlya-rezyume/">Как продать свое резюме в 2 раза дороже</a>
 -  <a href="http://enjoy-job.ru/trudoustroistvo/kak-pravilno-sostavit-rezume/">Как правильно составить резюме</a>
 -  <a href="http://habrahabr.ru/post/184332/">Резюме программистов. Часть 1 (плохие)</a>
 -  <a href="http://habrahabr.ru/post/184372/">Резюме программистов. Часть 2 (хорошие)</a>
 -  <a href="http://skyeng.ru/articles/sostavte-rezyume-na-anglijskom-450-primerov">Как составить резюме на английском</a>
--  <a href="http://blog.olegdubas.com/2013/03/17/resume/">ОФОРМЛЕНИЕ IT-РЕЗЮМЕ для USA</a>
+-  <a href="http://blog.olegdubas.com/2013/03/17/Meal/">ОФОРМЛЕНИЕ IT-РЕЗЮМЕ для USA</a>
 
 ### <a href="http://javaops.ru/story.html">Наши истории (делимся опытом и успехом)</a>
 
