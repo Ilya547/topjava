@@ -3,25 +3,27 @@ package ru.javawebinar.topjava.storage;
 import ru.javawebinar.topjava.model.Meal;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MealsStorage implements Storage {
 
     private final ConcurrentHashMap<Integer, Meal> meals = new ConcurrentHashMap<>();
 
-    protected int countMeal = 1;
+    protected int id = 0;
 
     @Override
-    public Meal create(Integer key, LocalDateTime dateTime, String description, int calories) {
-        Meal m = new Meal(countMeal, dateTime, description, calories);
-        meals.put(key, m);
-        countMeal++;
-        return meals.get(key);
+    public Meal create(LocalDateTime dateTime, String description, int calories) {
+        id++;
+        Meal m = new Meal(id, dateTime, description, calories);
+        meals.put(id, m);
+        return meals.get(id);
     }
 
     @Override
     public Meal update(Integer key, LocalDateTime dateTime, String description, int calories) {
-        Meal m = new Meal(dateTime, description, calories);
+        Meal m = new Meal(key, dateTime, description, calories);
         meals.put(key, m);
         return meals.get(key);
     }
@@ -34,6 +36,11 @@ public class MealsStorage implements Storage {
     @Override
     public void delete(Integer key) {
         meals.remove(key);
-        countMeal--;
+        id--;
+    }
+
+    @Override
+    public List<Meal> getStorageAsList() {
+        return new ArrayList<>(meals.values());
     }
 }
