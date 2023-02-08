@@ -6,25 +6,21 @@ import java.time.LocalTime;
 
 public class Meal {
 
+    private static int id;
     private LocalDateTime dateTime;
     private String description;
     private int calories;
-    private final int id;
-    public static final Meal EMPTY = new Meal(null, "EMPTY", 0,
-            (int) (Math.random() * 2000000 - 90000));
 
-    public Meal(LocalDateTime dateTime, String description, int calories) {
+    public Meal(int id, LocalDateTime dateTime, String description, int calories) {
+
+        this.id = id++;
         this.dateTime = dateTime;
         this.description = description;
         this.calories = calories;
-        this.id = (int) (Math.random() * 90000);
     }
 
-    public Meal(LocalDateTime dateTime, String description, int calories, int id) {
-        this.dateTime = dateTime;
-        this.description = description;
-        this.calories = calories;
-        this.id = id;
+    public Meal(LocalDateTime dateTime, String description, int calories) {
+        this( 1, dateTime, description, calories);
     }
 
     public LocalDateTime getDateTime() {
@@ -47,7 +43,7 @@ public class Meal {
         return dateTime.toLocalTime();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

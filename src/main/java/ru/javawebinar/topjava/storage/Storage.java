@@ -2,23 +2,15 @@ package ru.javawebinar.topjava.storage;
 
 import ru.javawebinar.topjava.model.Meal;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 public interface Storage {
 
-    void clear();
+    Meal create(Integer key, LocalDateTime dateTime, String description, int calories);
 
-    void update(Meal m);
+    Meal update(Integer key, LocalDateTime dateTime, String description, int calories);
 
-    void save(Meal m);
+    Meal get(Integer key);
 
-    Meal get(int id);
-
-    void delete(int id);
-
-    List<Meal> getAll();
-
-    int size();
-
-
+    void delete(Integer key);
 }
