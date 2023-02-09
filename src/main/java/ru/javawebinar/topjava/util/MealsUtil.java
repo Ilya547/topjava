@@ -14,8 +14,7 @@ import java.util.stream.Collectors;
 
 public class MealsUtil {
 
-    public static final Meal EMPTY = new Meal(0, LocalDateTime.now(),
-            "", 0);
+    public static final Meal EMPTY = new Meal(null, LocalDateTime.now().withSecond(0).withNano(0), "", 0);
     private static final int CALORIES_PER_DAY = 2000;
 
     public static void main(String[] args) {
@@ -61,7 +60,7 @@ public class MealsUtil {
                 .collect(Collectors.toList());
     }
 
-    public static List<Meal> fill() {
+    public static List<Meal> getTestMeals() {
         List<Meal> meals = Arrays.asList(
                 new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500),
                 new Meal(LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед", 1000),

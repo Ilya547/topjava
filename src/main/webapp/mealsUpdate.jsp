@@ -12,7 +12,8 @@
     <h4>Update/Add meal</h4>
     <dl>
         <dt>DateTime:</dt>
-        <dd><input type="text" placeholder="dd-mm-yyyy hh:mm" name="dateTime" size=50 value="${meal.dateTime}"></dd>
+        <dd><input type="datetime-local" name="dateTime" size=50
+                   value="${meal.dateTime}"></dd>
     </dl>
     <dl>
         <dt>Description:</dt>
@@ -23,7 +24,7 @@
         <dd><input type="number" placeholder="10 - 2000" name="calories" size=50 value="${meal.calories}"></dd>
     </dl>
     <button type="submit">Save</button>
-    <button onclick="window.history.back()">Cancel</button>
+    <button type="reset" onclick="window.history.back()">Cancel</button>
 </form>
 </body>
 </html>

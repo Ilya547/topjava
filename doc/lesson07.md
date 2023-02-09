@@ -406,7 +406,7 @@ JSON-сериализация `admin` без поля `registered` (это по�
 
 #### Apply 7_14_json_assert_tests.patch
 
-> - В `JsonUtil.writeIgnoreProps` вместо цикла по мапе сделал `map.keySet().removeAll`
+> - В `JsonUtil.writeIgnoreProps` вместо цикла по мапе сделал `map.idSet().removeAll`
 
 - [JSONassert](https://github.com/skyscreamer/JSONassert)
 - [Java Code Examples for ObjectMapper](https://www.programcreek.com/java-api-examples/index.php?api=com.fasterxml.jackson.databind.ObjectMapper)

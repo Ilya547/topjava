@@ -37,7 +37,7 @@ Java Enterprise Online Project
 
 ## ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 5. [Системы управления версиями. Git](doc/video5-vcs-git.md)</a>
 
-##  ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 6. <a href="https://drive.google.com/file/d/0B9Ye2auQ_NsFZDdaaU5fZEo4X3c/view?resourcekey=0-DvpzWIlMHZ7KX_v1SMuiAw">Работа с проектом (выполнять инструкции)</a>
+##  ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 6. <a href="https://drive.google.com/file/d/0B9Ye2auQ_NsFZDdaaU5fZEo4X3c/view?resourceid=0-DvpzWIlMHZ7KX_v1SMuiAw">Работа с проектом (выполнять инструкции)</a>
 - **ВНИМАНИЕ: выбирайте для проекта простой пусть без пробелов и русских букв, например, `c:\projects\topjava\` (Windows). Иначе впоследствии будут проблемы**
 - **Плагин Git Intergation уже не требуется, а вкладку `Version control` в IDEA переименовали в `Git`**
 
@@ -111,7 +111,7 @@ Java Enterprise Online Project
 -  <a href="http://web.archive.org/web/20201128101944/https://tproger.ru/translations/algorithms-and-data-structures/">Алгоритмы и структуры данных для начинающих: сложность алгоритмов</a>
 -  [Сложность алгоритмов и Big O Notation](https://threadreaderapp.com/thread/1470666237286010881)
 -  [Головач: сложность алгоритмов в теме коллекций](https://www.youtube.com/watch?v=Ek9ijOiplNE&feature=youtu.be&t=778)
--  <a href="https://drive.google.com/file/d/0B9Ye2auQ_NsFNEJWRFJkVDA3TkU/view?usp=sharing&resourcekey=0-MPCuoLVdSLiSc7hlE2jefQ">Time complexity</a>
+-  <a href="https://drive.google.com/file/d/0B9Ye2auQ_NsFNEJWRFJkVDA3TkU/view?usp=sharing&resourceid=0-MPCuoLVdSLiSc7hlE2jefQ">Time complexity</a>
 -  <a href="https://ru.wikipedia.org/wiki/Временная_сложность_алгоритма">Временная сложность алгоритма</a>
 -  <a href="https://ru.wikipedia.org/wiki/Вычислительная_сложность">Вычислительная сложность</a>
 
