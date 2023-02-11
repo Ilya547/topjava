@@ -3,6 +3,7 @@ package ru.javawebinar.topjava.web.meal;
 import ru.javawebinar.topjava.service.MealService;
 
 public class MealRestController {
+    //like ProfileRestController by Pavlvov
     private MealService service;
 
 }
