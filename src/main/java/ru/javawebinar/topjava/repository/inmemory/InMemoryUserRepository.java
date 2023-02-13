@@ -11,19 +11,20 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository
 public class InMemoryUserRepository implements UserRepository {
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepository.class);
 
-    private final Map<Integer, User> usersRepository = new ConcurrentHashMap<>();
+    private final Map<Integer, User> repository = new ConcurrentHashMap<>();
 
     private final AtomicInteger counter = new AtomicInteger(0);
 
     @Override
     public boolean delete(int id) {
         log.info("delete {}", id);
-        return usersRepository.remove(id) != null;
+        return repository.remove(id) != null;
     }
 
     @Override
@@ -31,28 +32,34 @@ public class InMemoryUserRepository implements UserRepository {
         log.info("save {}", user);
         if (user.isNew()) {
             user.setId(counter.incrementAndGet());
-            usersRepository.put(user.getId(), user);
+            repository.put(user.getId(), user);
             return user;
         }
         // handle case: update, but not present in storage
-        return usersRepository.computeIfPresent(user.getId(), (id, oldUser) -> user);
+        return repository.computeIfPresent(user.getId(), (id, oldUser) -> user);
     }
 
     @Override
     public User get(int id) {
         log.info("get {}", id);
-        return usersRepository.get(id);
+        return repository.get(id);
     }
 
     @Override
     public Collection<User> getAll() {
         log.info("getAll");
-        return usersRepository.values().stream().sorted().collect(Collectors.toList());
+        return repository.values().stream().sorted().collect(Collectors.toList());
     }
 
     @Override
     public User getByEmail(String email) {
         log.info("getByEmail {}", email);
-        return null;
+        Stream<Object> id = repository
+                .entrySet()
+                .stream()
+                .filter(entry -> email.equals(entry.getValue()))
+                .map(Map.Entry::getKey);
+        return repository.get(id);
+
     }
 }
