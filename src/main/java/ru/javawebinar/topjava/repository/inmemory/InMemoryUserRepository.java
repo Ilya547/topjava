@@ -15,6 +15,9 @@ import java.util.stream.Collectors;
 public class InMemoryUserRepository implements UserRepository {
     private static final Logger log = LoggerFactory.getLogger(InMemoryUserRepository.class);
 
+    public static final int USER1_ID = 1;
+    public static final int USER2_ID = 2;
+
     private final Map<Integer, User> repository = new ConcurrentHashMap<>();
 
     private final AtomicInteger counter = new AtomicInteger(0);
@@ -44,24 +47,23 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public Collection<User> getAll() {
+    public List<User> getAll() {
         log.info("getAll");
         return repository
                 .values()
                 .stream()
-                .sorted(Comparator.comparing(a -> a.getName().toUpperCase()))
+                .sorted(Comparator.comparing(User::getName, String.CASE_INSENSITIVE_ORDER))
                 .collect(Collectors.toList());
     }
 
     @Override
     public User getByEmail(String email) {
         log.info("getByEmail {}", email);
-        Integer id = repository
-                .entrySet()
+        return repository
+                .values()
                 .stream()
-                .filter(entry -> email.equals(entry.getValue().getEmail()))
-                .map(Map.Entry ::getKey)
-                .findAny().get();
-        return repository.get(id);
+                .filter(u -> email.equals(u.getEmail()))
+                .findFirst()
+                .orElse(null);
     }
 }

@@ -19,6 +19,8 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import static ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository.USER1_ID;
+
 public class MealsUtil {
     public static final int DEFAULT_CALORIES_PER_DAY = 2000;
 
@@ -58,12 +60,18 @@ public class MealsUtil {
     }
 
     public static void main(String[] args) {
-        UserRepository ur = new InMemoryUserRepository();
-        ur.save(new User(null, "Alex", "mail", "paas"));
-        User user = ur.getByEmail("mail");
 
-        System.out.println("user getall " + ur.getAll());
+        UserRepository ur = new InMemoryUserRepository();
+        ur.save(new User(null, "john Smith", "qmail", "paas"));
+        ur.save(new User(null, "Alex", "mail", "paas"));
+        ur.save(new User(null, "SAlex", "maiil", "paas"));
+        ur.save(new User(null, "John Smith", "maiiil", "paas"));
+        ur.save(new User(null, "John Smith", "email", "paas"));
+        System.out.println(ur.getByEmail("mail"));
+
+//        System.out.println("user getall " + ur.getAll());
         MealRepository mr = new InMemoryMealRepository();
+        System.out.println(mr.getAll(USER1_ID));
 
 
     }
