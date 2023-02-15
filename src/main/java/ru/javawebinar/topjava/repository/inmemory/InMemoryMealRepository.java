@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
 import ru.javawebinar.topjava.util.MealsUtil;
+import ru.javawebinar.topjava.web.SecurityUtil;
 
 import java.util.Collection;
 import java.util.Map;
@@ -17,14 +18,8 @@ public class InMemoryMealRepository implements MealRepository {
 
     {
         for (Meal meal : MealsUtil.meals) {
-            save(meal);
+            save(meal, SecurityUtil.authUserId());
         }
-    }
-
-    private Meal save(Meal meal) {
-        meal.setId(counter.incrementAndGet());
-        repository.put(meal.getId(), meal);
-        return meal;
     }
 
     @Override
@@ -40,17 +35,17 @@ public class InMemoryMealRepository implements MealRepository {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(int id, int userId) {
         return repository.remove(id) != null;
     }
 
     @Override
-    public Meal get(int id) {
+    public Meal get(int id, int userId) {
         return repository.get(id);
     }
 
     @Override
-    public Collection<Meal> getAll() {
+    public Collection<Meal> getAll(int userId) {
         return repository.values();
     }
 }

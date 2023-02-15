@@ -1,7 +1,12 @@
 package ru.javawebinar.topjava.util;
 
 import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.dto.MealTo;
+import ru.javawebinar.topjava.model.User;
+import ru.javawebinar.topjava.repository.MealRepository;
+import ru.javawebinar.topjava.repository.UserRepository;
+import ru.javawebinar.topjava.repository.inmemory.InMemoryMealRepository;
+import ru.javawebinar.topjava.repository.inmemory.InMemoryUserRepository;
+import ru.javawebinar.topjava.to.MealTo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -50,5 +55,16 @@ public class MealsUtil {
 
     private static MealTo createTo(Meal meal, boolean excess) {
         return new MealTo(meal.getId(), meal.getDateTime(), meal.getDescription(), meal.getCalories(), excess);
+    }
+
+    public static void main(String[] args) {
+        UserRepository ur = new InMemoryUserRepository();
+        ur.save(new User(null, "Alex", "mail", "paas"));
+        User user = ur.getByEmail("mail");
+
+        System.out.println("user getall " + ur.getAll());
+        MealRepository mr = new InMemoryMealRepository();
+
+
     }
 }
