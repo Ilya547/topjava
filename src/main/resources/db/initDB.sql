@@ -29,11 +29,10 @@ CREATE TABLE meals
 (
     id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     user_id     INTEGER NOT NULL,
-    dateTime    TIMESTAMP (0) NOT NULL,
-    description        VARCHAR NOT NULL,
-    calories        VARCHAR NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-    CONSTRAINT user_id_idx UNIQUE (user_id, id),
+    date_time   TIMESTAMP NOT NULL,
+    description VARCHAR NOT NULL,
+    calories    INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX unique_id ON meals (id);
+CREATE UNIQUE INDEX unique_dateTime_idx ON meals (user_id, date_time);
 
