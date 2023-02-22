@@ -17,9 +17,12 @@ import java.util.List;
 public class JdbcMealRepository implements MealRepository {
 
     private static final BeanPropertyRowMapper<Meal> ROW_MAPPER = BeanPropertyRowMapper.newInstance(Meal.class);
+    
     private final JdbcTemplate jdbcTemplate;
 
+
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
 
     private final SimpleJdbcInsert insertMeal;
 
@@ -61,19 +64,18 @@ public class JdbcMealRepository implements MealRepository {
 
     @Override
     public Meal get(int id, int userId) {
-        return jdbcTemplate.query("SELECT * FROM meals WHERE id =? AND user_id=?", new Object[]{id, userId},
-                ROW_MAPPER).stream().findAny().orElse(null);
+        return jdbcTemplate.query("SELECT * FROM meals WHERE id =? AND user_id=?", ROW_MAPPER,
+                id, userId).stream().findAny().orElse(null);
     }
 
     @Override
     public List<Meal> getAll(int userId) {
-        return jdbcTemplate.query("SELECT * FROM meals WHERE user_id=? ORDER BY datetime", new Object[]{userId},
-                new BeanPropertyRowMapper<>(Meal.class));
+        return jdbcTemplate.query("SELECT * FROM meals WHERE user_id=? ORDER BY datetime", ROW_MAPPER, userId);
     }
 
     @Override
     public List<Meal> getBetweenHalfOpen(LocalDateTime startDateTime, LocalDateTime endDateTime, int userId) {
-        return jdbcTemplate.query("SELECT * FROM meals WHERE datetime BETWEEN? AND?",
-                new Object[]{startDateTime, endDateTime}, ROW_MAPPER);
+        return jdbcTemplate.query("SELECT * FROM meals WHERE datetime BETWEEN? AND?", ROW_MAPPER, startDateTime,
+                endDateTime);
     }
 }
