@@ -1,30 +1,46 @@
 package ru.javawebinar.topjava.model;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+@NamedQueries({
+        @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:userId"),
+        @NamedQuery(name = Meal.GET_ALL, query = "SELECT m FROM Meal m WHERE m.user.id=:userId ORDER BY m.dateTime DESC"),
+        @NamedQuery(name = Meal.GET_BETWEEN_HALF_OPEN, query = "SELECT m FROM Meal m WHERE m.user.id=:userId AND " +
+                "m.dateTime >=:startDateTime AND m.dateTime <:endDateTime ORDER BY m.dateTime DESC"),
+})
 @Entity
 @Table(name = "meal", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "date_time"},
-        name = "meals_userId_dateTime")})
+        name = "meals_user_id_date_time")})
 public class Meal extends AbstractBaseEntity {
+
+    public static final String DELETE = "Meal.delete";
+    public static final String GET_ALL = "Meal.getAll";
+    public static final String GET_BETWEEN_HALF_OPEN = "Meal.getBetweenHalfOpen";
 
     @Column(name = "date_time", nullable = false)
     @NotNull
     private LocalDateTime dateTime;
 
     @Column(name = "description", nullable = false)
-    @NotEmpty
+    @NotBlank
+    @Size(min = 3, max = 255)
     private String description;
 
     @Column(name = "calories", nullable = false)
+    @Range(min = 10, max = 10000)
     private int calories;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
 
     public Meal() {

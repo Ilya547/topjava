@@ -50,7 +50,7 @@ public class JdbcMealRepository implements MealRepository {
             meal.setId(newId.intValue());
         } else {
             if (namedParameterJdbcTemplate.update("" +
-                    "UPDATE meal " +
+                    "UPDATE meal" +
                     "   SET description=:description, calories=:calories, date_time=:date_time " +
                     " WHERE id=:id AND user_id=:user_id", map) == 0) {
                 return null;
@@ -66,9 +66,9 @@ public class JdbcMealRepository implements MealRepository {
 
     @Override
     public Meal get(int id, int userId) {
-        List<Meal> meals = jdbcTemplate.query(
+        List<Meal> meal = jdbcTemplate.query(
                 "SELECT * FROM meal WHERE id = ? AND user_id = ?", ROW_MAPPER, id, userId);
-        return DataAccessUtils.singleResult(meals);
+        return DataAccessUtils.singleResult(meal);
     }
 
     @Override
