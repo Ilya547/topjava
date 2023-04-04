@@ -6,33 +6,37 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
+<script type="text/javascript" src="resources/js/topjava.common.js" defer></script>
+<script type="text/javascript" src="resources/js/topjava.meals.js" defer></script>
 
-<section>
-    <h3><spring:message code="meal.title"/></h3>
-
-    <form method="get" action="meals/filter">
-        <dl>
-            <dt><spring:message code="meal.startDate"/>:</dt>
-            <dd><input type="date" name="startDate" value="${param.startDate}"></dd>
-        </dl>
-        <dl>
-            <dt><spring:message code="meal.endDate"/>:</dt>
-            <dd><input type="date" name="endDate" value="${param.endDate}"></dd>
-        </dl>
-        <dl>
-            <dt><spring:message code="meal.startTime"/>:</dt>
-            <dd><input type="time" name="startTime" value="${param.startTime}"></dd>
-        </dl>
-        <dl>
-            <dt><spring:message code="meal.endTime"/>:</dt>
-            <dd><input type="time" name="endTime" value="${param.endTime}"></dd>
-        </dl>
-        <button type="submit"><spring:message code="meal.filter"/></button>
-    </form>
+<div class="jumbotron pt-4">
+    <div class="container">
+        <h3 class="text-center"><spring:message code="meal.title"/></h3>
+        <form id="filter">
+            <div class="row">
+                <div class="col-2">
+                    <label for="startDate"><spring:message code="meal.startDate"/></label>
+                    <input class="form-control" name="startDate" id="startDate" autocomplete="off">
+                </div>
+                <div class="col-2">
+                    <label for="endDate"><spring:message code="meal.endDate"/></label>
+                    <input class="form-control" name="endDate" id="endDate" autocomplete="off">
+                </div>
+                <div class="offset-2 col-3">
+                    <label for="startTime"><spring:message code="meal.startTime"/></label>
+                    <input class="form-control" name="startTime" id="startTime" autocomplete="off">
+                </div>
+                <div class="col-3">
+                    <label for="endTime"><spring:message code="meal.endTime"/></label>
+                    <input class="form-control" name="endTime" id="endTime" autocomplete="off">
+                </div>
+            </div>
+        </form>
     <hr>
     <a href="meals/create"><spring:message code="meal.add"/></a>
     <hr>
-    <table border="1" cellpadding="8" cellspacing="0">
+    <%--    <table border="1" cellpadding="8" cellspacing="0">--%>
+    <table class="table table-striped" id="datatable">
         <thead>
         <tr>
             <th><spring:message code="meal.dateTime"/></th>
@@ -58,7 +62,7 @@
             </tr>
         </c:forEach>
     </table>
-</section>
+
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
