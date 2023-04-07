@@ -10,6 +10,7 @@ const ctx = {
 
 // $(document).ready(function () {
 $(function () {
+    ctx.updateTable();
     makeEditable(
         $("#datatable").DataTable({
             "paging": false,
